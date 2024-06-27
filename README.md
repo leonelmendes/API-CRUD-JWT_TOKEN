@@ -2,30 +2,30 @@
 
 ## Sumário
 
-- [Introdução](#introdução)
-- [Instalação](#installation)
-  - [Pré-requisitos](#pré-requisitos)
-  - [Configurando o banco de dados](#setting-up-the-database)
-  - [Executando a API](#running-the-api)
-- [Configuração](#configuração)
-- [Criação de Tokens JWT](#criação-de-tokens-jwt)
-- [Exemplo de Uso](#exemplo-de-uso)
+- [Introduction](#introduction)
+- [Installation](#installation)
+  - [Prerequisites](#prerequisites)
+  - [Setting up the database](#setting-up-the-database)
+  - [Running the API](#running-the-api)
+- [Configuration](#configuration)
+- [Creation of JWT Tokens](#jwt-token-creation)
+- [Usage Example](#usage-example)
 
-## Introdução
+## Introduction
 
-Esta é uma API de autenticação de usuário construída com ASP.NET Core e PostgreSQL. A API usa JWT (JSON Web Tokens) para autenticação e autorização de usuários.
+This is a user authentication API built with ASP.NET Core and PostgreSQL. The API uses JWT (JSON Web Tokens) for user authentication and authorization.
 
-## Instalação
+## Installation
 
-### Pré-requisitos
+### Prerequisites
 
 - [.NET 6 SDK](https://dotnet.microsoft.com/download/dotnet/6.0)
 - [PostgreSQL](https://www.postgresql.org/download/)
 
 ### Setting Up the Database
 
-1. Instale o PostgreSQL e crie um novo banco de dados
-2. Atualize a string de conexão na pasta `Conexao` no arquivo `Connection.cs` do projeto API para usar variáveis ​​de ambiente:
+1. Install PostgreSQL and create a new database
+2. Update the connection string in the `Connection` folder in the `Connection.cs` file of the API project to use environment variables:
    ```csharp
    private static string ServidorBD = "Serivdor-Database";
    private static string PortaBD = "Port-Database";
@@ -35,28 +35,28 @@ Esta é uma API de autenticação de usuário construída com ASP.NET Core e Pos
 
    private static string Stringconexao = string.Format("Server={0};Port={1};User Id={2};Password={3};Database={4};", ServidorBD, PortaBD, UsuarioBD, SenhaBD, BD);
 
-### Executando a API
-1. **Navegue até o diretório do projeto API**:
+### Running the API
+1. **Navigate to the API project directory**:
      ```bash
     git clone https://github.com/code-hub-dev/API-CRUD-JWT_TOKEN.git
     cd Api
 
-2. **Restaure as dependências da API**:
+2. **Restore API dependencies**:
     ```bash
     dotnet restore
 
-3. **Execute a API**:
+3. **Run the API**:
      ```bash
      dotnet watch
 
 
-3. Configure o seu Jwt no arquivo `appsettings.json`.
+3. Configure your Jwt in the `appsettings.json` file.
 
-## Configuração
+## Configuration
 
 ### `appsettings.json`
 
-Adicione as seguintes configurações ao seu arquivo `appsettings.json`:
+Add the following settings to your `appsettings.json` file:
 
 ```json
   "Jwt": {
@@ -66,9 +66,9 @@ Adicione as seguintes configurações ao seu arquivo `appsettings.json`:
   }
 ```
 
-### Configuração do Middleware de Autenticação
+### Authentication Middleware Configuration
 
-Configure o middleware de autenticação no Program.cs:
+Configure authentication middleware in Program.cs:
 
 ```csharp
         using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -107,9 +107,9 @@ Configure o middleware de autenticação no Program.cs:
       
       app.Run();
 ```
-## Criação de Tokens JWT
+## Creation of JWT Tokens
 
-Gerando o Token
+Generating the Token
 
 ```csharp
         using System;
@@ -137,12 +137,12 @@ Gerando o Token
             return tokenHandler.WriteToken(token);
         }
 ```
-Verificação do Token
-Configure a verificação do token no Program.cs conforme mostrado acima na seção Configuração do Middleware de Autenticação.
+Token Verification
+Configure token verification in Program.cs as shown above in the Authentication Middleware Configuration section.
 
-## Exemplo de Uso
-Cliente HTTP
-Aqui está um exemplo de como enviar uma solicitação HTTP para a API testando o token usando HttpClient em C#.
+## Usage Example
+HTTP Client
+Here is an example of how to send an HTTP request to the API by testing the token using HttpClient in C#.
 
 ```csharp
   using System.Net.Http;
