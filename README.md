@@ -71,7 +71,7 @@ Add the following settings to your `appsettings.json` file:
 Configure authentication middleware in Program.cs:
 
 ```csharp
-        using Microsoft.AspNetCore.Authentication.JwtBearer;
+      using Microsoft.AspNetCore.Authentication.JwtBearer;
       using Microsoft.IdentityModel.Tokens;
       using System.Text;
       
